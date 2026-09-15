@@ -5,6 +5,12 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // OSC serves the built app through `vite preview` behind its own hostname;
+  // vite rejects unknown Host headers unless they are allow-listed.
+  preview: {
+    host: true,
+    allowedHosts: [".osaas.io"],
+  },
   plugins: [react(), svgr()],
   test: {
     globals: true,
